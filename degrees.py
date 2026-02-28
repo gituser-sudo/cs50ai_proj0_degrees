@@ -135,32 +135,37 @@ def shortest_path(source, target):
         set_of_actor_ids=frozenset({source_id})
     )
     queue.append(node_source)
+    new_queue = deque()
 
-    while queue:
-        current_node = queue.popleft()
-        current_depth = current_node.depth
-        current_actor_id = list(current_node.set_of_actor_ids)[0]  # last actor in path
+    while true
+        while queue:
+            current_node = queue.popleft()
+            current_depth = current_node.depth
+            current_actor_id = list(current_node.set_of_actor_ids)[0]  # last actor in path
 
-        for neighbor in neighbors_for_person(current_actor_id):
-            movie_id, person_id = neighbor
+            for neighbor in neighbors_for_person(current_actor_id):
+                movie_id, person_id = neighbor
 
-            # Avoid cycles
-            if person_id in current_node.set_of_actor_ids:
-                continue
+                # Avoid cycles
+                if person_id in current_node.set_of_actor_ids:
+                    continue
 
-            # Build new node
-            new_node = Node(
-                depth=current_depth + 1,
-                obj=neighbor,
-                list_of_objects=current_node.list_of_objects + [neighbor],
-                set_of_actor_ids=current_node.set_of_actor_ids.union({person_id})
-            )
+                # Build new node
+                new_node = Node(
+                    depth=current_depth + 1,
+                    obj=neighbor,
+                    list_of_objects=current_node.list_of_objects + [neighbor],
+                    set_of_actor_ids=current_node.set_of_actor_ids.union({person_id})
+                )
 
-            # If we reached target, return path
-            if person_id == target_id:
-                return new_node.list_of_objects
+                # If we reached target, return path
+                if person_id == target_id:
+                    return new_node.list_of_objects
 
-            queue.append(new_node)
+                new_queue.append(new_node)
+
+        new_queue = queue
+
 
     # No path found
     return None
