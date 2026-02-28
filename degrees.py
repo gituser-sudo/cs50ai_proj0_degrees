@@ -125,6 +125,8 @@ def shortest_path(source, target):
     that connect the source to the target.
     If no possible path, returns None.
     """
+    if source == target:
+        return None
 
     # BFS queue
     queue = deque()
@@ -164,8 +166,7 @@ def shortest_path(source, target):
                 return new_node.list_of_objects
 
             # also if source is same as target return the first one
-            if source == target:
-                return new_node.list_of_objects
+
 
             queue.append(new_node)
 
