@@ -139,7 +139,7 @@ def shortest_path(source, target):
     while queue:
         current_node = queue.popleft()
         current_depth = current_node.depth
-        current_actor_id = list(current_node.set_of_actor_ids)[-1]  # last actor in path
+        current_actor_id = list(current_node.set_of_actor_ids)[0]  # last actor in path
 
         for neighbor in neighbors_for_person(current_actor_id):
             movie_id, person_id = neighbor
