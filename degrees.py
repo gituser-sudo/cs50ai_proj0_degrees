@@ -121,8 +121,8 @@ def shortest_path(source, target):
     that connect the source to the target.
     If no possible path, returns None.
     """
-    source_id = person_id_for_name(source)
-    target_id = person_id_for_name(target)
+    source_id = source
+    target_id = target
 
     # BFS queue
     queue = deque()
