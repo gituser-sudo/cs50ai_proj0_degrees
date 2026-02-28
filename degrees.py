@@ -163,6 +163,10 @@ def shortest_path(source, target):
             if person_id == target:
                 return new_node.list_of_objects
 
+            # also if source is same as target return the first one
+            if source == target
+                return new_node.list_of_objects
+
             queue.append(new_node)
 
     return None
