@@ -113,6 +113,8 @@ def main():
     # create a depth 0 set of nodes from the neighbors of person returned
 
     # replace set with deque because the q is used only one time
+    # also one queue is sufficient . no need at every depth
+    # the queue will get created and processed in sequence
 
 
 from collections import deque
