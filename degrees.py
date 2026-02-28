@@ -101,13 +101,6 @@ def main():
             print(f"{i + 1}: {person1} and {person2} starred in {movie}")
 
 
-def shortest_path(source, target):
-    """
-    Returns the shortest list of (movie_id, person_id) pairs
-    that connect the source to the target.
-
-    If no possible path, returns None.
-    """
 
     # maintain a set for each depth
     # each object in the set will have the current (movie, actor) pair
@@ -119,54 +112,7 @@ def shortest_path(source, target):
 
     # create a depth 0 set of nodes from the neighbors of person returned
 
-    source_id = person_id_for_name(source)
-    target_id = person_id_for_name(target)
-    node_map
-
-    # initial source node
-
-    node_source = Node(
-    depth= -1,
-    obj= None,
-    list_of_objects = [],
-    set_of_actor_ids = frozenset()
-    )
-    node_map[-1][0] = node_source
-    current_depth = 0
-
-    while true
-
-        # iterate through the node_list at current depth - 1
-
-        iterating_depth = depth - 1
-        for node in node_map[iterating_depth]
-            neighbors_list = neighbors_for_person(current_id)
-
-            index = 0
-            for neighbor in neighbors_list
-                # create the node list for all the neighbors for this depth 0
-                node_item = Node(
-                depth= depth,
-                obj=neighbor,
-                list_of_objects = node("list_of_objects") + (neighbor),
-                set_of_actor_ids = node("set_of_actor_ids") + frozenset({source_id})
-                )
-
-                current_id = neighbor[1]
-                node_map[depth] = node
-                if current_id = target_id
-                return list_of_objects
-                if current_id not in set_of_actor_ids:
-                    node_map[depth][index] = node
-
-        depth = depth + 1
-
-
-
-
-    # TODO
-    raise NotImplementedError
-
+    # replace set with deque because the q is used only one time
 
 
 def shortest_path(source, target):
