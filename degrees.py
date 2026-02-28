@@ -164,7 +164,7 @@ def shortest_path(source, target):
                 return new_node.list_of_objects
 
             # also if source is same as target return the first one
-            if source == target
+            if source == target:
                 return new_node.list_of_objects
 
             queue.append(new_node)
