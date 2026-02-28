@@ -115,14 +115,14 @@ def main():
     # replace set with deque because the q is used only one time
 
 
+from collections import deque
+
 def shortest_path(source, target):
     """
     Returns the shortest list of (movie_id, person_id) pairs
     that connect the source to the target.
     If no possible path, returns None.
     """
-    source_id = source
-    target_id = target
 
     # BFS queue
     queue = deque()
@@ -132,42 +132,37 @@ def shortest_path(source, target):
         depth=0,
         obj=None,
         list_of_objects=[],
-        set_of_actor_ids=frozenset({source_id})
+        set_of_actor_ids=frozenset({source})
     )
+
     queue.append(node_source)
-    new_queue = deque()
 
-    while true
-        while queue:
-            current_node = queue.popleft()
-            current_depth = current_node.depth
-            current_actor_id = list(current_node.set_of_actor_ids)[0]  # last actor in path
+    while queue:
+        current_node = queue.popleft()
+        current_depth = current_node.depth
 
-            for neighbor in neighbors_for_person(current_actor_id):
-                movie_id, person_id = neighbor
+        # You need to store current actor separately in Node
+        current_actor_id = list(current_node.set_of_actor_ids)[-1]
 
-                # Avoid cycles
-                if person_id in current_node.set_of_actor_ids:
-                    continue
+        for movie_id, person_id in neighbors_for_person(current_actor_id):
 
-                # Build new node
-                new_node = Node(
-                    depth=current_depth + 1,
-                    obj=neighbor,
-                    list_of_objects=current_node.list_of_objects + [neighbor],
-                    set_of_actor_ids=current_node.set_of_actor_ids.union({person_id})
-                )
+            # Avoid cycles
+            if person_id in current_node.set_of_actor_ids:
+                continue
 
-                # If we reached target, return path
-                if person_id == target_id:
-                    return new_node.list_of_objects
+            new_node = Node(
+                depth=current_depth + 1,
+                obj=(movie_id, person_id),
+                list_of_objects=current_node.list_of_objects + [(movie_id, person_id)],
+                set_of_actor_ids=current_node.set_of_actor_ids.union({person_id})
+            )
 
-                new_queue.append(new_node)
+            # If target found
+            if person_id == target:
+                return new_node.list_of_objects
 
-        new_queue = queue
+            queue.append(new_node)
 
-
-    # No path found
     return None
 
 
